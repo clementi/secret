@@ -1,8 +1,7 @@
 mod cli;
 
-use std::error::Error;
-
 use clap::Parser;
+use std::error::Error;
 
 const DIE_SIZE: u32 = 6;
 
