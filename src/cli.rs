@@ -5,7 +5,7 @@ use clap::{Parser, Subcommand};
 #[command(propagate_version = true)]
 pub struct Args {
     #[command(subcommand)]
-    commands: Commands,
+    pub commands: Commands,
 
     #[arg(
         long,
@@ -13,10 +13,10 @@ pub struct Args {
         help = "Number of tokens or phrases to generate",
         default_value_t = 1
     )]
-    count: u32,
+    pub count: u32,
 }
 #[derive(Subcommand, Debug)]
-enum Commands {
+pub enum Commands {
     Token { name: Option<String> },
     Phrase { name: Option<String> },
 }
