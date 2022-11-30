@@ -8,35 +8,43 @@ use std::{
     io::{self, BufRead},
 };
 
+use crate::cli::Command;
+
 const DIE_SIZE: u32 = 6;
 const INDEX_LENGTH: u32 = 5;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args = cli::Args::parse();
 
-    let file = File::open("./eff_large_wordlist.txt")?;
-    let lines = io::BufReader::new(file).lines();
+    match args.command {
+        Command::Phrase { length, separator } => {
+            let file = File::open("./eff_large_wordlist.txt")?;
+            let lines = io::BufReader::new(file).lines();
 
-    let mut dictionary = HashMap::new();
+            let mut dictionary = HashMap::new();
 
-    for result in lines {
-        let line = result?;
-        let parts: Vec<&str> = line.split('\t').collect();
-        dictionary.insert(String::from(parts[0]), String::from(parts[1]));
+            for result in lines {
+                let line = result?;
+                let parts: Vec<&str> = line.split('\t').collect();
+                dictionary.insert(String::from(parts[0]), String::from(parts[1]));
+            }
+
+            for _ in 0..args.count {
+                let mut words = vec![];
+
+                for _ in 0..length {
+                    let index = get_index();
+                    let word = dictionary.get(&index).unwrap();
+
+                    words.push(word.as_str());
+                }
+
+                println!("{}", words.join(&separator));
+            }
+            Ok(())
+        }
+        Command::Token { length: _ } => Ok(()),
     }
-
-    let mut words = vec![];
-
-    for _ in 0..args.count {
-        let index = get_index();
-        let word = dictionary.get(&index).unwrap();
-
-        words.push(word.as_str());
-    }
-
-    println!("{}", words.join(" "));
-
-    Ok(())
 }
 
 fn get_index() -> String {
