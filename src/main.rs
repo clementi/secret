@@ -9,6 +9,7 @@ use std::{
 };
 
 const DIE_SIZE: u32 = 6;
+const INDEX_LENGTH: u32 = 5;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args = cli::Args::parse();
@@ -40,7 +41,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 fn get_index() -> String {
     let mut rolls = vec![];
-    for _ in 0..DIE_SIZE - 1 {
+    for _ in 0..INDEX_LENGTH {
         rolls.push(roll());
     }
     rolls.iter().map(|n| n.to_string()).collect()
