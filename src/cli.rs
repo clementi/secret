@@ -17,10 +17,12 @@ pub struct Args {
 }
 #[derive(Subcommand, Debug)]
 pub enum Command {
+    #[command(about = "Generate a token (string) of random characters")]
     Token {
         #[arg(long, short, help = "Length of token", default_value_t = 20)]
         length: u32,
     },
+    #[command(about = "Generate a passphrase of random words")]
     Phrase {
         #[arg(long, short, help = "Length of phrase (in words)", default_value_t = 4)]
         length: u32,
