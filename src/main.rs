@@ -12,7 +12,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     match args.command {
         Command::Phrase { length, separator } => {
-            let dictionary = dictionary::load_dictionary();
+            let dictionary = dictionary::load_dictionary()?;
 
             for _ in 0..args.count {
                 println!(

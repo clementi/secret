@@ -18,7 +18,7 @@ pub fn generate_phrase(
     words.join(separator)
 }
 
-pub fn get_word(dictionary: &HashMap<String, String>) -> &str {
+fn get_word(dictionary: &HashMap<String, String>) -> &str {
     let index = get_index();
     dictionary.get(&index).unwrap()
 }
