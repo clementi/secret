@@ -8,8 +8,8 @@ pub struct Args {
     pub command: Command,
 
     #[arg(
-        long,
-        short,
+        long = "number",
+        short = 'n',
         help = "Number of tokens or phrases to generate",
         default_value_t = 1
     )]
@@ -21,6 +21,9 @@ pub enum Command {
     Token {
         #[arg(long, short, help = "Length of token", default_value_t = 20)]
         length: u32,
+
+        #[arg(long, short, help = "Alphabet to use", default_value_t = String::from("all"))]
+        alphabet: String,
     },
     #[command(about = "Generate a passphrase of random words")]
     Phrase {

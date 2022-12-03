@@ -1,4 +1,5 @@
 mod cli;
+mod dictionary;
 mod phrase;
 
 use clap::Parser;
@@ -11,20 +12,19 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     match args.command {
         Command::Phrase { length, separator } => {
-            let dictionary = phrase::load_dictionary();
+            let dictionary = dictionary::load_dictionary();
 
             for _ in 0..args.count {
-                let mut words = vec![];
-
-                for _ in 0..length {
-                    let word = phrase::get_word(&dictionary);
-                    words.push(word);
-                }
-
-                println!("{}", words.join(&separator));
+                println!(
+                    "{}",
+                    phrase::generate_phrase(length, &separator, &dictionary)
+                );
             }
             Ok(())
         }
-        Command::Token { length: _ } => Ok(()),
+        Command::Token {
+            length: _,
+            alphabet: _,
+        } => Ok(()),
     }
 }

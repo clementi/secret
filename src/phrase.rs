@@ -1,25 +1,21 @@
-use std::{
-    collections::HashMap,
-    fs::File,
-    io::{self, BufRead},
-};
+use std::collections::HashMap;
 
 const INDEX_LENGTH: u32 = 5;
 const DIE_SIZE: u32 = 6;
 
-pub fn load_dictionary() -> HashMap<String, String> {
-    let file = File::open("./eff_large_wordlist.txt").unwrap();
-    let lines = io::BufReader::new(file).lines();
+pub fn generate_phrase(
+    length: u32,
+    separator: &String,
+    dictionary: &HashMap<String, String>,
+) -> String {
+    let mut words = vec![];
 
-    let mut dictionary = HashMap::new();
-
-    for result in lines {
-        let line = result.unwrap();
-        let parts: Vec<&str> = line.split('\t').collect();
-        dictionary.insert(String::from(parts[0]), String::from(parts[1]));
+    for _ in 0..length {
+        let word = get_word(dictionary);
+        words.push(word);
     }
 
-    dictionary
+    words.join(separator)
 }
 
 pub fn get_word(dictionary: &HashMap<String, String>) -> &str {
