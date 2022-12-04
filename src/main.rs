@@ -1,3 +1,4 @@
+mod alphabet;
 mod cli;
 mod dictionary;
 mod phrase;
@@ -22,9 +23,21 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
             Ok(())
         }
-        Command::Token {
-            length: _,
-            alphabet: _,
-        } => Ok(()),
+        Command::Token { length, alphabet } => {
+            let chars: Vec<char> = alphabet::get_alphabet(&alphabet).chars().collect();
+
+            for _ in 0..args.count {
+                let mut token_chars = vec![];
+
+                for _ in 0..length {
+                    let index = rand::random::<usize>() % chars.len();
+                    let char = chars[index];
+                    token_chars.push(char);
+                }
+
+                println!("{}", String::from_iter(token_chars));
+            }
+            Ok(())
+        }
     }
 }

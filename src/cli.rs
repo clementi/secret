@@ -22,8 +22,8 @@ pub enum Command {
         #[arg(long, short, help = "Length of token", default_value_t = 20)]
         length: u32,
 
-        #[arg(long, short, help = "Alphabet to use", default_value_t = String::from("all"))]
-        alphabet: String,
+        #[arg(long, short, help = "Alphabet to use")]
+        alphabet: Vec<String>,
     },
     #[command(about = "Generate a passphrase of random words")]
     Phrase {
@@ -34,3 +34,20 @@ pub enum Command {
         separator: String,
     },
 }
+
+// #[derive(Debug, Clone)]
+// pub enum Alphabet {
+//     AlphaLower,
+//     AlphaUpper,
+//     Alpha,
+//     Numeric,
+//     AlphaNumeric,
+//     Symbols,
+//     All,
+// }
+
+// impl fmt::Display for Alphabet {
+//     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+//         write!(f, "{:?}", self)
+//     }
+// }
