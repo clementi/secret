@@ -1,6 +1,6 @@
-pub const ALPHA_LOWER: &str = "abcdefghijklmnopqrstuvwxuz";
+pub const ALPHA_LOWER: &str = "abcdefghijklmnopqrstuvwxyz";
 
-pub const ALPHA_UPPER: &str = "ABCDEFGHIJKLMNOPQRSTUVWXUZ";
+pub const ALPHA_UPPER: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 pub const NUMERIC: &str = "0123456789";
 
