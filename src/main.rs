@@ -2,6 +2,7 @@ mod alphabet;
 mod cli;
 mod dictionary;
 mod phrase;
+mod token;
 
 use clap::Parser;
 use std::error::Error;
@@ -27,15 +28,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let chars: Vec<char> = alphabet::get_alphabet(&alphabet).chars().collect();
 
             for _ in 0..args.count {
-                let mut token_chars = vec![];
-
-                for _ in 0..length {
-                    let index = rand::random::<usize>() % chars.len();
-                    let char = chars[index];
-                    token_chars.push(char);
-                }
-
-                println!("{}", String::from_iter(token_chars));
+                println!("{}", token::generate_token(length, &chars));
             }
             Ok(())
         }
