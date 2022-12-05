@@ -62,20 +62,3 @@ pub enum Command {
         separator: String,
     },
 }
-
-// #[derive(Debug, Clone)]
-// pub enum Alphabet {
-//     AlphaLower,
-//     AlphaUpper,
-//     Alpha,
-//     Numeric,
-//     AlphaNumeric,
-//     Symbols,
-//     All,
-// }
-
-// impl fmt::Display for Alphabet {
-//     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-//         write!(f, "{:?}", self)
-//     }
-// }

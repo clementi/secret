@@ -46,7 +46,7 @@ pub fn get_alphabet(options: &AlphabetOptions) -> String {
 
     let alpha_lower = options.alpha_lower || options.alpha || options.alphanumeric || options.all;
     let alpha_upper = options.alpha_upper || options.alpha || options.alphanumeric || options.all;
-    let numeric = options.numeric || options.all;
+    let numeric = options.numeric || options.alphanumeric || options.all;
     let symbols = options.symbols || options.all;
 
     if alpha_lower {
