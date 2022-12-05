@@ -1,32 +1,66 @@
-pub const ALPHA_LOWER: &str = "abcdefghijklmnopqrstuvwxyz";
+use std::fmt;
 
-pub const ALPHA_UPPER: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+pub struct AlphabetOptions {
+    pub alpha_lower: bool,
+    pub alpha_upper: bool,
+    pub alpha: bool,
+    pub numeric: bool,
+    pub alphanumeric: bool,
+    pub symbols: bool,
+    pub all: bool,
+}
 
-pub const NUMERIC: &str = "0123456789";
+impl AlphabetOptions {
+    pub fn is_valid(&self) -> bool {
+        self.alpha_lower
+            || self.alpha_upper
+            || self.alpha
+            || self.numeric
+            || self.alphanumeric
+            || self.symbols
+            || self.all
+    }
+}
 
-pub const SYMBOLS: &str = "`~!@#$%^&*()_+-={}|[]\\:;'\"<>?,./";
+#[derive(Debug, Clone)]
+pub struct InvalidOptionsError;
 
-pub fn get_alphabet(sets: &Vec<String>) -> String {
-    let mut alphabets = vec![];
+impl fmt::Display for InvalidOptionsError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "invalid options")
+    }
+}
 
-    for set in sets.iter() {
-        if set == "alpha-lower" {
-            alphabets.push(ALPHA_LOWER);
-        } else if set == "alpha-upper" {
-            alphabets.push(ALPHA_UPPER);
-        } else if set == "numeric" {
-            alphabets.push(NUMERIC);
-        } else if set == "symbols" {
-            alphabets.push(SYMBOLS);
-        }
+impl std::error::Error for InvalidOptionsError {}
+
+const ALPHA_LOWER: &str = "abcdefghijklmnopqrstuvwxyz";
+
+const ALPHA_UPPER: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+const NUMERIC: &str = "0123456789";
+
+const SYMBOLS: &str = "`~!@#$%^&*()_+-={}|[]\\:;'\"<>?,./";
+
+pub fn get_alphabet(options: &AlphabetOptions) -> String {
+    let mut alphabet = String::from("");
+
+    let alpha_lower = options.alpha_lower || options.alpha || options.alphanumeric || options.all;
+    let alpha_upper = options.alpha_upper || options.alpha || options.alphanumeric || options.all;
+    let numeric = options.numeric || options.all;
+    let symbols = options.symbols || options.all;
+
+    if alpha_lower {
+        alphabet.push_str(ALPHA_LOWER);
+    }
+    if alpha_upper {
+        alphabet.push_str(ALPHA_UPPER);
+    }
+    if numeric {
+        alphabet.push_str(NUMERIC);
+    }
+    if symbols {
+        alphabet.push_str(SYMBOLS);
     }
 
-    if sets.is_empty() {
-        alphabets.push(ALPHA_LOWER);
-        alphabets.push(ALPHA_UPPER);
-        alphabets.push(NUMERIC);
-        alphabets.push(SYMBOLS);
-    }
-
-    alphabets.join("")
+    alphabet
 }

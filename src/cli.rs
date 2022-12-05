@@ -22,8 +22,36 @@ pub enum Command {
         #[arg(long, short, help = "Length of token", default_value_t = 20)]
         length: u32,
 
-        #[arg(long, short, help = "Alphabet to use")]
-        alphabet: Vec<String>,
+        #[arg(long, help = "Use lowercase letters")]
+        alpha_lower: bool,
+
+        #[arg(long, help = "Use uppercase letters")]
+        alpha_upper: bool,
+
+        #[arg(
+            long,
+            help = "Use lowercase and uppercase letters (equivalent to --alpha-lower --alpha-upper)"
+        )]
+        alpha: bool,
+
+        #[arg(long, help = "Use numeric characters")]
+        numeric: bool,
+
+        #[arg(
+            long,
+            help = "Use alphanumeric characters (equivalent to --alpha --numeric)"
+        )]
+        alphanumeric: bool,
+
+        #[arg(long, help = "Use symbols")]
+        symbols: bool,
+
+        #[arg(
+            short,
+            long,
+            help = "Use everything (equivalent to --alphanumeric --symbols)"
+        )]
+        all: bool,
     },
     #[command(about = "Generate a passphrase of random words")]
     Phrase {

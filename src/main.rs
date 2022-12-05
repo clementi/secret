@@ -24,8 +24,31 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
             Ok(())
         }
-        Command::Token { length, alphabet } => {
-            let chars: Vec<char> = alphabet::get_alphabet(&alphabet).chars().collect();
+        Command::Token {
+            length,
+            alpha_lower,
+            alpha_upper,
+            alpha,
+            numeric,
+            alphanumeric,
+            symbols,
+            all,
+        } => {
+            let options = alphabet::AlphabetOptions {
+                alpha_lower,
+                alpha_upper,
+                alpha,
+                numeric,
+                alphanumeric,
+                symbols,
+                all,
+            };
+
+            if !options.is_valid() {
+                return Err(Box::new(alphabet::InvalidOptionsError));
+            }
+
+            let chars: Vec<char> = alphabet::get_alphabet(&options).chars().collect();
 
             for _ in 0..args.count {
                 println!("{}", token::generate_token(length, &chars));
