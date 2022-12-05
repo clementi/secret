@@ -1,7 +1,7 @@
 use std::{collections::HashMap, error::Error};
 
 pub fn load_dictionary() -> Result<HashMap<String, String>, Box<dyn Error>> {
-    let dictionary_contents = include_str!("../eff_large_wordlist.txt");
+    let dictionary_contents = include_str!("../inc/eff_large_wordlist.txt");
     let lines = dictionary_contents.lines();
 
     let mut dictionary = HashMap::new();
