@@ -23,11 +23,21 @@ impl AlphabetOptions {
 }
 
 #[derive(Debug, Clone)]
-pub struct InvalidOptionsError;
+pub struct InvalidOptionsError {
+    details: String,
+}
+
+impl InvalidOptionsError {
+    pub fn new(msg: &str) -> InvalidOptionsError {
+        InvalidOptionsError {
+            details: msg.to_string(),
+        }
+    }
+}
 
 impl fmt::Display for InvalidOptionsError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "invalid options")
+        write!(f, "{}", self.details)
     }
 }
 
