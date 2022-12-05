@@ -34,7 +34,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             symbols,
             all,
         } => {
-            let options = alphabet::AlphabetOptions {
+            let mut options = alphabet::AlphabetOptions {
                 alpha_lower,
                 alpha_upper,
                 alpha,
@@ -44,8 +44,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                 all,
             };
 
-            if !options.is_valid() {
-                return Err(Box::new(alphabet::InvalidOptionsError));
+            if options.all_false() {
+                options.all = true;
             }
 
             let chars: Vec<char> = alphabet::get_alphabet(&options).chars().collect();

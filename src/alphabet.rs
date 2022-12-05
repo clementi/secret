@@ -11,14 +11,14 @@ pub struct AlphabetOptions {
 }
 
 impl AlphabetOptions {
-    pub fn is_valid(&self) -> bool {
-        self.alpha_lower
-            || self.alpha_upper
-            || self.alpha
-            || self.numeric
-            || self.alphanumeric
-            || self.symbols
-            || self.all
+    pub fn all_false(&self) -> bool {
+        !self.alpha_lower
+            && !self.alpha_upper
+            && !self.alpha
+            && !self.numeric
+            && !self.alphanumeric
+            && !self.symbols
+            && !self.all
     }
 }
 

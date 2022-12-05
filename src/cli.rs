@@ -49,7 +49,7 @@ pub enum Command {
         #[arg(
             short,
             long,
-            help = "Use everything (equivalent to --alphanumeric --symbols)"
+            help = "Use everything (equivalent to --alphanumeric --symbols) [default if no other character set is provided]"
         )]
         all: bool,
     },
