@@ -13,3 +13,16 @@ pub fn load_dictionary() -> Result<HashMap<String, String>, Box<dyn Error>> {
 
     Ok(dictionary)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn load_dictionary_loads_the_dictionary() {
+        match load_dictionary() {
+            Ok(dictionary) => assert!(!dictionary.is_empty()),
+            Err(msg) => assert!(false, "error creating dictionary: {msg}"),
+        }
+    }
+}

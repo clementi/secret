@@ -1,11 +1,15 @@
 use clap::{Parser, Subcommand};
 
 fn parse_natural_number(v: &str) -> Result<u32, String> {
-    let num: u32 = v.parse::<u32>().map_err(|_| String::from("--number must be an integer greater than zero"))?;
+    let num: u32 = v
+        .parse::<u32>()
+        .map_err(|_| String::from("--number must be an integer greater than zero"))?;
     if num > 0 {
         Ok(num)
     } else {
-        Err(String::from("--number must be an integer greater than zero"))
+        Err(String::from(
+            "--number must be an integer greater than zero",
+        ))
     }
 }
 
@@ -78,7 +82,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn parse_natural_number_correctly_fails_on_non_numbers() {
+    fn parse_natural_number_fails_on_non_numbers() {
         let value = "q";
         match parse_natural_number(value) {
             Ok(v) => assert!(false, "should fail on {value}, got {v}"),

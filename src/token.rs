@@ -9,3 +9,15 @@ pub fn generate_token(length: u32, chars: &Vec<char>) -> String {
 
     String::from_iter(token_chars)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn generate_token_generates_a_token() {
+        let length = 10;
+        let token = generate_token(length, &vec!['a', 'b', 'c']);
+        assert!(token.len() as u32 == length);
+    }
+}
