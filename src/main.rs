@@ -4,7 +4,6 @@ mod dictionary;
 mod phrase;
 mod token;
 
-use alphabet::InvalidOptionsError;
 use clap::Parser;
 use std::error::Error;
 
@@ -12,12 +11,6 @@ use crate::cli::Command;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args = cli::Args::parse();
-
-    if args.count < 1 {
-        return Err(Box::new(InvalidOptionsError::new(
-            "count must be at least 1",
-        )));
-    }
 
     match args.command {
         Command::Phrase { length, separator } => {
