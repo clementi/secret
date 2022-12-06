@@ -1,5 +1,3 @@
-use std::fmt;
-
 pub struct AlphabetOptions {
     pub alpha_lower: bool,
     pub alpha_upper: bool,
