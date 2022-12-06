@@ -21,12 +21,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     match args.command {
         Command::Phrase { length, separator } => {
-            if length < 1 {
-                return Err(Box::new(InvalidOptionsError::new(
-                    "length must be at least 1",
-                )));
-            }
-
             let dictionary = dictionary::load_dictionary()?;
 
             for _ in 0..args.count {
@@ -47,12 +41,6 @@ fn main() -> Result<(), Box<dyn Error>> {
             symbols,
             all,
         } => {
-            if length < 1 {
-                return Err(Box::new(InvalidOptionsError::new(
-                    "length must be at least 1",
-                )));
-            }
-
             let mut options = alphabet::AlphabetOptions {
                 alpha_lower,
                 alpha_upper,
