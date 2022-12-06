@@ -51,3 +51,9 @@ pub fn get_alphabet(options: &AlphabetOptions) -> String {
 
     alphabet
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn get_alphabet_gets_an_alphabet() {}
+}
