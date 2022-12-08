@@ -54,6 +54,57 @@ pub fn get_alphabet(options: &AlphabetOptions) -> String {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
-    fn get_alphabet_gets_an_alphabet() {}
+    fn get_alphabet_gets_an_alphabet() {
+        for bits in 0..127 {
+            let options = build_options(bits);
+            let alphabet = get_alphabet(&options);
+
+            if has_alpha_lower(&options) {
+                assert!(alphabet.contains(ALPHA_LOWER))
+            }
+
+            if has_alpha_upper(&options) {
+                assert!(alphabet.contains(ALPHA_UPPER))
+            }
+
+            if has_numeric(&options) {
+                assert!(alphabet.contains(NUMERIC))
+            }
+
+            if has_symbols(&options) {
+                assert!(alphabet.contains(SYMBOLS))
+            }
+        }
+    }
+
+    fn build_options(bits: u8) -> AlphabetOptions {
+        AlphabetOptions {
+            alpha_lower: bits & 0x40 != 0,
+            alpha_upper: bits & 0x20 != 0,
+            alpha: bits & 0x10 != 0,
+            numeric: bits & 0x08 != 0,
+            alphanumeric: bits & 0x04 != 0,
+            symbols: bits & 0x02 != 0,
+            all: bits & 0x01 != 0,
+        }
+    }
+
+    fn has_alpha_lower(options: &AlphabetOptions) -> bool {
+        options.alpha_lower || options.alpha || options.alphanumeric || options.all
+    }
+
+    fn has_alpha_upper(options: &AlphabetOptions) -> bool {
+        options.alpha_upper || options.alpha || options.alphanumeric || options.all
+    }
+
+    fn has_numeric(options: &AlphabetOptions) -> bool {
+        options.numeric || options.alphanumeric || options.all
+    }
+
+    fn has_symbols(options: &AlphabetOptions) -> bool {
+        options.symbols || options.all
+    }
 }
