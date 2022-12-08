@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
-const INDEX_LENGTH: u32 = 5;
-const DIE_SIZE: u32 = 6;
+const INDEX_LENGTH: u8 = 5;
+const DIE_SIZE: u8 = 6;
 
 pub fn generate_phrase(
     length: u32,
@@ -31,8 +31,8 @@ fn get_index() -> String {
     rolls.iter().map(|n| n.to_string()).collect()
 }
 
-fn roll() -> u32 {
-    rand::random::<u32>() % DIE_SIZE + 1
+fn roll() -> u8 {
+    rand::random::<u8>() % DIE_SIZE + 1
 }
 
 #[cfg(test)]
@@ -93,7 +93,7 @@ mod tests {
 
     #[test]
     fn roll_returns_an_int_in_the_right_range() {
-        let rolled = roll() as u8;
+        let rolled = roll();
         assert!(is_valid_digit(rolled))
     }
 }
