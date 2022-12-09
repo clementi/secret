@@ -1,6 +1,6 @@
 # secret
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/clementi/secret/CI)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/clementi/secret/CI)](https://github.com/clementi/secret/actions/workflows/ci.yml)
 [![Crates.io](https://img.shields.io/crates/v/secret-gen)](https://crates.io/crates/secret-gen)
 
 Command-line password/passphrase generator.
