@@ -17,6 +17,6 @@ path = "src/main.rs"
 
 [dependencies]
 clap = { version = "4.0.27", features = ["derive"] }
-config = "0.13.3"
+config = { version = "0.13.3", default-features = false, features = ["ron"] }
 rand = "0.8.5"
 serde = { version = "1.0.152", features = ["derive"] }
