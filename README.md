@@ -37,6 +37,8 @@ Options:
   -V, --version         Print version information
 ```
 
+### Create a Password
+
 The `token` command has this usage:
 
 ```
@@ -54,6 +56,8 @@ Options:
   -h, --help             Print help information
   -V, --version          Print version information
 ```
+
+### Create a Passphrase
 
 The `phrase` command has this usage:
 
