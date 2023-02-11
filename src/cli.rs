@@ -31,7 +31,10 @@ pub struct Args {
 }
 #[derive(Subcommand, Debug)]
 pub enum Command {
-    #[command(about = "Generate a token (string) of random characters")]
+    #[command(
+        about = "Generate a token (string) of random characters",
+        visible_alias = "t"
+    )]
     Token {
         #[arg(long, short, help = "Length of token", default_value_t = 20, value_parser = parse_natural_number)]
         length: u32,
@@ -67,7 +70,7 @@ pub enum Command {
         )]
         all: bool,
     },
-    #[command(about = "Generate a passphrase of random words")]
+    #[command(about = "Generate a passphrase of random words", visible_alias = "p")]
     Phrase {
         #[arg(long, short, help = "Length of phrase (in words)", default_value_t = 4, value_parser = parse_natural_number)]
         length: u32,
