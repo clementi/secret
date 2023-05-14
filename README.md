@@ -3,6 +3,8 @@
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/clementi/secret/ci.yml?branch=main)](https://github.com/clementi/secret/actions/workflows/ci.yml)
 [![Crates.io](https://img.shields.io/crates/v/secret-gen)](https://crates.io/crates/secret-gen)
 
+![Secret](media/logo.png)
+
 Command-line password/passphrase generator.
 
 ## Installation
