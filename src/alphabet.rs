@@ -31,10 +31,10 @@ const SYMBOLS: &str = "`~!@#$%^&*()_+-={}|[]\\:;'\"<>?,./";
 pub fn get_alphabet(options: &AlphabetOptions) -> String {
     let mut alphabet = String::from("");
 
-    let alpha_lower = options.alpha_lower || options.alpha || options.alphanumeric || options.all;
-    let alpha_upper = options.alpha_upper || options.alpha || options.alphanumeric || options.all;
-    let numeric = options.numeric || options.alphanumeric || options.all;
-    let symbols = options.symbols || options.all;
+    let alpha_lower = options.all || options.alpha_lower || options.alpha || options.alphanumeric;
+    let alpha_upper = options.all || options.alpha_upper || options.alpha || options.alphanumeric;
+    let numeric = options.all || options.numeric || options.alphanumeric;
+    let symbols = options.all || options.symbols;
 
     if alpha_lower {
         alphabet.push_str(ALPHA_LOWER);
