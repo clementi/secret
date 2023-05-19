@@ -93,18 +93,18 @@ mod tests {
     }
 
     fn has_alpha_lower(options: &AlphabetOptions) -> bool {
-        options.alpha_lower || options.alpha || options.alphanumeric || options.all
+        options.all || options.alpha_lower || options.alpha || options.alphanumeric
     }
 
     fn has_alpha_upper(options: &AlphabetOptions) -> bool {
-        options.alpha_upper || options.alpha || options.alphanumeric || options.all
+        options.all || options.alpha_upper || options.alpha || options.alphanumeric
     }
 
     fn has_numeric(options: &AlphabetOptions) -> bool {
-        options.numeric || options.alphanumeric || options.all
+        options.all || options.numeric || options.alphanumeric
     }
 
     fn has_symbols(options: &AlphabetOptions) -> bool {
-        options.symbols || options.all
+        options.all || options.symbols
     }
 }
