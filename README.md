@@ -9,11 +9,7 @@ Command-line password/passphrase generator.
 
 ## Installation
 
-You can install secret by using Cargo, or with Homebrew, or by downloading a binary from the Releases page.
-
 ### Cargo
-
-Run this in your shell:
 
 ```sh
 cargo install secret-gen
