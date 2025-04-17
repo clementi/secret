@@ -19,6 +19,13 @@ Run this in your shell:
 cargo install secret-gen
 ```
 
+### Homebrew
+
+```sh
+brew tap clementi/homebrew-secret
+brew install secret
+```
+
 ### Binaries
 
 See the [Releases](https://github.com/clementi/secret/releases) page.
