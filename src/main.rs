@@ -1,6 +1,6 @@
 mod alphabet;
 mod cli;
-mod dictionary;
+mod word_list;
 mod phrase;
 mod token;
 
@@ -14,12 +14,12 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     match args.command {
         Command::Phrase { length, separator } => {
-            let dictionary = dictionary::load_dictionary()?;
+            let word_list = word_list::load_word_list()?;
 
             for _ in 0..args.count {
                 println!(
                     "{}",
-                    phrase::generate_phrase(length, &separator, &dictionary)
+                    phrase::generate_phrase(length, &separator, &word_list)
                 );
             }
             Ok(())
