@@ -15,6 +15,12 @@ Command-line password/passphrase generator.
 cargo install secret-gen
 ```
 
+or, if you have [cargo-binstall](https://github.com/cargo-bins/cargo-binstall):
+
+```sh
+cargo binstall secret-gen
+```
+
 ### Homebrew
 
 ```sh
