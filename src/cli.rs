@@ -36,7 +36,7 @@ pub enum Command {
         visible_alias = "t"
     )]
     Token {
-        #[arg(long, short, help = "Length of token", default_value_t = 20, value_parser = parse_natural_number)]
+        #[arg(long, short, help = "Length of token", default_value_t = 30, value_parser = parse_natural_number)]
         length: u32,
 
         #[arg(long, help = "Use lowercase letters")]
